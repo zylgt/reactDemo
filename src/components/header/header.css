@@ -1,0 +1,13 @@
+#HeaderBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#avatar{
+    width:60px;
+    height:60px;
+}
+.header-right-box{
+    display: flex;
+    align-items: center;
+}
