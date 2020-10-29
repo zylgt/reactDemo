@@ -1,31 +1,27 @@
 import React from 'react';
-import { Menu } from 'antd';
-import {
-    BarChartOutlined,
-    TeamOutlined,
-    UploadOutlined
-  } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Menu} from 'antd';
+import routes from '../../router/router';
+import { Link,withRouter } from 'react-router-dom';
+
+// withRouter的作用：把不是通过路由切换过来的组件中，将react-router的history、location、match三个对象传入props对象上
+
 class Menus extends React.Component{
+    state = {
+        selectedKeys:[]
+    }
     render(){
+        const path = this.props.location.pathname
         return(
             <div id='Menu'>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1" icon={<BarChartOutlined />}>
-                        <Link to='/home'>数据统计</Link>
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<TeamOutlined />}>
-                        <Link to='/about'>关于我们</Link>
-                    </Menu.Item>
-                    <Menu.Item key="3" icon={<UploadOutlined />}>
-                        <Link to='/order'>订单管理</Link>
-                    </Menu.Item>
-                    <Menu.Item key="4" icon={<UploadOutlined />}>
-                        <Link to='/product'>商品管理</Link>
-                    </Menu.Item>
+                <Menu theme="dark" mode="inline" selectedKeys={[path]} >
+                    {routes.map((item,index) => {
+                            return <Menu.Item key={item.path} icon={item.meta.icon}>
+                                    <Link to={item.path}>{item.meta.title}</Link>
+                                </Menu.Item>
+                    }) }
                 </Menu>
             </div>
         )
     }
 }
-export default Menus
+export default withRouter(Menus)

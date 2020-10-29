@@ -1,5 +1,8 @@
 import Loadable from 'react-loadable'
 import React from 'react'
+import {
+    BarChartOutlined,UploadOutlined,TeamOutlined
+  } from '@ant-design/icons';
 
 const Loading = () => {
     return <div>loading...</div>
@@ -27,14 +30,17 @@ const routes=[
     {
         path:'/',
         component:Home,
-        exact:true
+        meta:{
+            title:'',
+            icon:''
+        }
     },{
         path:'/home',
         component:Home,
         name:'home',
         meta:{
             title:'数据统计',
-            icon:'BarChartOutlined'
+            icon:<BarChartOutlined/>
         }
     },{
         path:'/order',
@@ -42,7 +48,7 @@ const routes=[
         name:'order',
         meta:{
             title:'订单管理',
-            icon:'UploadOutlined'
+            icon:<UploadOutlined/>
         }
     },{
         path:'/product',
@@ -50,7 +56,7 @@ const routes=[
         name:'product',
         meta:{
             title:'商品管理',
-            icon:'BarChartOutlined'
+            icon:<BarChartOutlined/>
         }
     },{
         path:'/about',
@@ -58,7 +64,7 @@ const routes=[
         name:'about',
         meta:{
             title:'关于我们',
-            icon:'TeamOutlined'
+            icon:<TeamOutlined/>
         }
     }
 ]
