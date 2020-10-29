@@ -12,7 +12,7 @@ class HeaderBar extends React.Component{
     toggle = () => {
         this.props.onToggle()
     };
-
+    //  测试上擦
     render(){
         const menu = (
             <Menu>
