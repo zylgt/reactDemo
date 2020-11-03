@@ -26,7 +26,7 @@ class HeaderBar extends React.Component{
                 className: 'trigger',
                 onClick: this.toggle,
                 })}
-                <div class='header-right-box'>
+                <div className='header-right-box'>
                     <div style={{margin:'0 30px'}}>
                         <Badge count={5} size="small" >
                             <BellOutlined style={{fontSize: '20px'}} />

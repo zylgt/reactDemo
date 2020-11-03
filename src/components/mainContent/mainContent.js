@@ -11,10 +11,14 @@ class MainCotents extends React.Component{
                     return <Route 
                             path={item.path} 
                             key={index}
-                            exact
-                            render={props=>(
-                                <item.component {...props} />
-                            )}
+                            exact={item.exact}
+                            render={props=>{
+                                if(item.children){
+                                    return <item.component {...props}  routes={item.children} />
+                                }else{
+                                    return <item.component {...props} />
+                                }
+                            }}
                             ></Route>
                 })}
             </Switch>

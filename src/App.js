@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Layout, Breadcrumb } from 'antd';
 import 'antd/dist/antd.css';
-import HeaderBar from './components/header/header';
+import HeaderBars from './components/header/header';
 import Menus from './components/Menu/Menu';
 import MainContents from './components/mainContent/mainContent';
 
@@ -28,7 +28,7 @@ class App extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{padding:'0 24px'}} >
-            <HeaderBar collapsed={this.state.collapsed} onToggle={this.toggle}/>
+            <HeaderBars collapsed={this.state.collapsed} onToggle={this.toggle}/>
           </Header>
           <Content
             style={{

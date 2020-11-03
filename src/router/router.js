@@ -20,16 +20,24 @@ const Product =Loadable({
     loading:Loading,
     loader:() => import('../page/product/product')
 })
+const Edit =Loadable({
+    loading:Loading,
+    loader:() => import('../page/product/edit')
+})
+const ProduceList =Loadable({
+    loading:Loading,
+    loader:() => import('../page/product/productList')
+})
 const About =Loadable({
     loading:Loading,
     loader:() => import('../page/about/about')
 })
 
-
 const routes=[
     {
         path:'/',
         component:Home,
+        exact:true,
         meta:{
             title:'',
             icon:''
@@ -38,6 +46,7 @@ const routes=[
         path:'/home',
         component:Home,
         name:'home',
+        exact:true,
         meta:{
             title:'数据统计',
             icon:<BarChartOutlined/>
@@ -46,6 +55,7 @@ const routes=[
         path:'/order',
         component:Order,
         name:'order',
+        exact:true,
         meta:{
             title:'订单管理',
             icon:<UploadOutlined/>
@@ -57,11 +67,30 @@ const routes=[
         meta:{
             title:'商品管理',
             icon:<BarChartOutlined/>
-        }
+        },
+        children:[
+            {
+                path:'/product/edit',
+                component:Edit,
+                name:'edit',
+                meta:{
+                    title:'添加商品'
+                }
+            },
+            {
+                path:'/product/productList',
+                component:ProduceList,
+                name:'productList',
+                meta:{
+                    title:'商品列表'
+                }
+            }
+        ]
     },{
         path:'/about',
         component:About,
         name:'about',
+        exact:true,
         meta:{
             title:'关于我们',
             icon:<TeamOutlined/>

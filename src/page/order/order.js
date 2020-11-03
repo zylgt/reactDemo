@@ -68,6 +68,7 @@ class Order extends React.Component {
       ]
     }
     delClick = (e) => {
+      console.log(e)
       let dataSource = this.state.dataSource
       let newData=dataSource.filter(item=> item.key!==e.key)
       this.setState({
@@ -83,7 +84,7 @@ class Order extends React.Component {
         <div id='Order'>
             <Row gutter={[{xs:8,sm:16,md:24,lg:32},{xs:8,sm:16,md:24,lg:32}]}>
                 <Col span={6} >
-                    <span class='label' >状态</span>
+                    <span className='label' >状态</span>
                     <Select
                         style={{width:160}}
                         showSearch
@@ -99,7 +100,7 @@ class Order extends React.Component {
                     </Select>
                 </Col>
                 <Col span={8} >
-                    <span class='label' >日期</span>
+                    <span className='label' >日期</span>
                     <RangePicker />
                 </Col>
                 <Col span={8} >
