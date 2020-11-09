@@ -1,69 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Table, Row, Col, Button, Popconfirm, Space, Image, Input } from 'antd';
-
+ 
 class ProductList extends React.Component {
   state={
-    dataSource:[
-      {
-        key: '1',
-        type:'BPM1',
-        name:'5907',
-        specs:'1',
-        money:'199',
-        stock:'999',
-        date:'2020-08-09',
-        lot:'202008090056',
-        img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-      },
-      {
-        key: '2',
-        type:'BPM2',
-        name:'5907',
-        specs:'1',
-        money:'199',
-        stock:'999',
-        date:'2020-08-09',
-        lot:'202008090056',
-        img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-      },
-      {
-        key: '3',
-        type:'BPM3',
-        name:'5907',
-        specs:'1',
-        money:'199',
-        stock:'999',
-        date:'2020-08-09',
-        lot:'202008090056',
-        img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-      },
-      {
-        key: '4',
-        type:'BPM4',
-        name:'5907',
-        specs:'1',
-        money:'199',
-        stock:'999',
-        date:'2020-08-09',
-        lot:'202008090056',
-        img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-      },
-      {
-        key: '5',
-        type:'BPM5',
-        name:'5907',
-        specs:'1',
-        money:'199',
-        stock:'999',
-        date:'2020-08-09',
-        lot:'202008090056',
-        img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-      }
-    ]
+    dataSource:''
+  }
+  delClick = (e) => {
+    this.props.del(e.key)
+  }
+  editClick = (e) =>{
+    this.props.history.push({pathname:'/product/edit',state:{id:e.key}})
   }
   render() {
     const { Column } = Table;
-    const dataSource = this.state.dataSource
+    console.log(this.props)
     return (
       <div id='ProductList'>
             <Row gutter={[{xs:8,sm:16,md:24,lg:32},{xs:8,sm:16,md:24,lg:32}]}>
@@ -85,8 +36,8 @@ class ProductList extends React.Component {
                 <Col span={2} >
                 <Button type="primary">添加</Button>
                 </Col>
-            </Row>
-           <Table dataSource={dataSource} bordered >
+            </Row> 
+           <Table dataSource={this.props.dataSource} bordered >
                 <Column align='center' title='商品型号' dataIndex='type' key='type' ></Column>
                 <Column align='center' title='商品名称' dataIndex='name'  key='name' ></Column>
                 <Column align='center' title='商品规格' dataIndex='specs' key='specs' ></Column>
@@ -107,7 +58,9 @@ class ProductList extends React.Component {
                     >
                       <Button danger size='small'>删除</Button>
                     </Popconfirm>
-                    <Button type="primary" ghost size='small' >编辑</Button>
+                    <Button type="primary" ghost size='small' onClick={this.editClick.bind(this,record)} >
+                      编辑
+                    </Button>
                   </Space>
                   
                 )} ></Column>
@@ -115,6 +68,19 @@ class ProductList extends React.Component {
       </div>
     );
   }
+  
+}
+// 把状态映射到props
+function mapStateToProps(state) {
+  return {
+    dataSource: state.dataSource
+  }
 }
 
-export default ProductList;
+// 把dispatch映射到props
+function mapDispatchToProps(dispatch) {
+  return {
+      del: (key) => dispatch({ type: 'DEL' , data : key})
+  }
+}
+export default  connect(mapStateToProps, mapDispatchToProps)(ProductList);

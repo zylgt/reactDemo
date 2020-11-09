@@ -64,6 +64,7 @@ const routes=[
         path:'/product',
         component:Product,
         name:'product',
+        exact:false,
         meta:{
             title:'商品管理',
             icon:<BarChartOutlined/>
