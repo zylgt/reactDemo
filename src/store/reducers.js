@@ -1,73 +1,34 @@
-
-import {DEL} from './actionType'
+import {DEL, EDIT, ADD} from './actionType'
 const defaultState = {
-    dataSource:[
-        {
-          key: '1',
-          type:'BPM1',
-          name:'5907',
-          specs:'1',
-          money:'199',
-          stock:'999',
-          date:'2020-08-09',
-          lot:'202008090056',
-          img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-        },
-        {
-          key: '2',
-          type:'BPM2',
-          name:'5907',
-          specs:'1',
-          money:'199',
-          stock:'999',
-          date:'2020-08-09',
-          lot:'202008090056',
-          img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-        },
-        {
-          key: '3',
-          type:'BPM3',
-          name:'5907',
-          specs:'1',
-          money:'199',
-          stock:'999',
-          date:'2020-08-09',
-          lot:'202008090056',
-          img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-        },
-        {
-          key: '4',
-          type:'BPM4',
-          name:'5907',
-          specs:'1',
-          money:'199',
-          stock:'999',
-          date:'2020-08-09',
-          lot:'202008090056',
-          img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
-        },
-        {
-          key: '5',
-          type:'BPM5',
-          name:'5907',
-          specs:'1',
-          money:'199',
-          stock:'999',
-          date:'2020-08-09',
-          lot:'202008090056',
-          img:'https://cnbj2.fds.api.xiaomi.com/webfiles/detail-img416071590370824.jpeg'
+    dataSource:localStorage['dataSoucer']?JSON.parse(localStorage['dataSoucer']):[]
+}
+
+const proDuct = (state = defaultState, action) => {
+  var newData = state.dataSource
+  switch(action.type){
+    case ADD:
+        action.data.key = newData.length +1
+        newData.push(action.data)
+        return {dataSource:newData}  
+    case DEL:
+      newData = newData.filter(item=> item.key!==action.data)
+      return {dataSource:newData}
+    case EDIT:
+      newData.forEach(item => {
+        if(item.key == action.key){
+          item.type = action.data.type 
+          item.specs = action.data.specs 
+          item.stock = action.data.stock 
+          item.date = action.data.date 
+          item.lot = action.data.lot 
+          item.lot = action.data.lot 
+          item.money = action.data.money
         }
-    ]
+      })
+      return {dataSource:newData}  
+    default:
+        return state
+  }
 }
 
-const del = (state = defaultState, action) =>{
-    switch(action.type){
-        case DEL:
-            let newData = state.dataSource.filter(item=> item.key!==action.data)
-            return {dataSource:newData}
-        default:
-            return state
-    }
-}
-
-export default del
+export default proDuct

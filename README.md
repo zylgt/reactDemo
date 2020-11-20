@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 运行项目
+    npm install
 
-In the project directory, you can run:
+    npm start
 
-### `yarn start`
+    npm build (打包)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 项目布局
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+.
+├── public                                      // 公共资源文件，不会被打包
+├── src                                         // 源码目录
+│   ├── components                              // 公共组件
+│   │   ├── chart                               
+│   │   │   ├── bar.js                          // 柱状图
+│   │   │   ├── line.js                         // 折线图
+│   │   │   ├── map.js                          // 地图
+│   │   │   ├── pie.js                          // 饼图
+│   │   ├── header
+│   │   │   ├── header.css                      // 头部组件样式
+│   │   │   └── header.js                       // 头部公共组件
+│   │   ├── mainContent
+│   │   │   └── mainContent.js                  // 页面内容组件
+│   │   └──Menu
+│   │       └── Menu.js                         // 左侧菜单组件
+│   ├── page
+│   │   ├── about
+│   │   │   └── about.js                        // 关于我们
+│   │   ├── home
+│   │   │   └──home.js                          // 首页
+│   │   ├── order
+│   │   │   └── order.js                        // 订单列表
+│   │   ├── product
+│   │   │   ├── addProduct.js                   // 添加商品
+│   │   │   ├── edit.js                         // 编辑商品
+│   │   │   ├── product.js                      // 容器组件
+│   │   │   └── productList.js                  // 商品列表
+│   ├── router
+│   │   └── router.js                           // 路由配置
+│   ├── store                                   // redux的状态管理
+│   │   ├── action.js                           // 配置actions
+│   │   ├── actionType.js                       // 定义常量 action名
+│   │   ├── reducers.js                         // 根据action实现操作
+│   │   └──  store.js                           // 引用reducer，创建store
+│   ├── App.js                                  // 程序入口文件，加载各种公共组件
+│   ├── index.js                                // 页面入口文件
+.

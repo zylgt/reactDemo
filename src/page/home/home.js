@@ -1,9 +1,9 @@
 import React from 'react';
 import {Card,Col,Row} from 'antd';
-import Line from '../../components/line/line';
-import Pie from '../../components/pie/pie';
-import Bar from '../../components/bar/bar';
-import Map from '../../components/map/map';
+import Line from '../../components/chart/line';
+import Pie from '../../components/chart/pie';
+import Bar from '../../components/chart/bar';
+import Map from '../../components/chart/map';
 
 
 class Home extends React.Component {

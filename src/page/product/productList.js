@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { del } from '../../store/action.js'
 import { Table, Row, Col, Button, Popconfirm, Space, Image, Input } from 'antd';
  
 class ProductList extends React.Component {
@@ -14,7 +15,6 @@ class ProductList extends React.Component {
   }
   render() {
     const { Column } = Table;
-    console.log(this.props)
     return (
       <div id='ProductList'>
             <Row gutter={[{xs:8,sm:16,md:24,lg:32},{xs:8,sm:16,md:24,lg:32}]}>
@@ -71,16 +71,16 @@ class ProductList extends React.Component {
   
 }
 // 把状态映射到props
-function mapStateToProps(state) {
-  return {
-    dataSource: state.dataSource
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     dataSource: state.dataSource
+//   }
+// }
 
 // 把dispatch映射到props
-function mapDispatchToProps(dispatch) {
-  return {
-      del: (key) => dispatch({ type: 'DEL' , data : key})
-  }
-}
-export default  connect(mapStateToProps, mapDispatchToProps)(ProductList);
+// function mapDispatchToProps(dispatch) {
+//   return {
+//       del: (key) => dispatch({ type: 'DEL' , data : key})
+//   }
+// }
+export default connect( state => ({dataSource: state.dataSource}) , { del } )(ProductList);

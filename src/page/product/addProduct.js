@@ -1,12 +1,12 @@
 import React from 'react';
 import './edit.css';
-import { connect } from 'react-redux';
-import { edit } from '../../store/action.js'
+import { connect } from 'react-redux' ;
+import { add } from '../../store/action.js'
 import {Form,Input,InputNumber,Upload,DatePicker,message,Switch,Button} from 'antd' ;
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
-class Edit extends React.Component {
+class AddProduct extends React.Component {
   formRef = React.createRef();
   state = {
     loading: false
@@ -27,7 +27,7 @@ class Edit extends React.Component {
       </div>
     );
     return (
-      <div id='Edit'>
+      <div id='AddProduct'>
           <Form {...layout}  ref={this.formRef} onFinish={this.onFinish}>
             <Form.Item label='商品名称' name='name' rules={[{ required : true, message : '请填写商品名称' }]} >
               <Input />
@@ -74,18 +74,7 @@ class Edit extends React.Component {
       </div>
     );
   }
-  componentDidMount(){
-    // 数据回显
-    let dataForm = this.props.dataSource.find(item => item.key === this.props.location.state.id )
-    if(dataForm.img){
-      this.setState({
-        imageUrl:dataForm.img,
-        loading:false
-      })
-    }
-    dataForm.date = moment(dataForm.date)
-    delete dataForm.img
-    this.formRef.current.setFieldsValue(dataForm)
+  componentDidMount(){  
   }
   handleChange = info => {
     if (info.file.status === 'uploading') {
@@ -107,7 +96,8 @@ class Edit extends React.Component {
   };
   onFinish = values => {
     values['date']=values['date'].format('YYYY-MM-DD')
-    this.props.edit(values,this.props.location.state.id)
+    console.log(values)
+    this.props.add(values)
     message.success('提交成功');
     this.props.history.goBack()
   }
@@ -131,4 +121,4 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 
-export default  connect(state => ({ dataSource: state.dataSource}), {edit})(Edit);;
+export default  connect(state => ({dataSource: state.dataSource}), {add})(AddProduct);

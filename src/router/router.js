@@ -24,6 +24,10 @@ const Edit =Loadable({
     loading:Loading,
     loader:() => import('../page/product/edit')
 })
+const AddProduct =Loadable({
+    loading:Loading,
+    loader:() => import('../page/product/addProduct')
+})
 const ProduceList =Loadable({
     loading:Loading,
     loader:() => import('../page/product/productList')
@@ -38,6 +42,7 @@ const routes=[
         path:'/',
         component:Home,
         exact:true,
+        isShow:true,
         meta:{
             title:'',
             icon:''
@@ -47,6 +52,7 @@ const routes=[
         component:Home,
         name:'home',
         exact:true,
+        isShow:true,
         meta:{
             title:'数据统计',
             icon:<BarChartOutlined/>
@@ -56,6 +62,7 @@ const routes=[
         component:Order,
         name:'order',
         exact:true,
+        isShow:true,
         meta:{
             title:'订单管理',
             icon:<UploadOutlined/>
@@ -65,6 +72,7 @@ const routes=[
         component:Product,
         name:'product',
         exact:false,
+        isShow:true,
         meta:{
             title:'商品管理',
             icon:<BarChartOutlined/>
@@ -74,6 +82,16 @@ const routes=[
                 path:'/product/edit',
                 component:Edit,
                 name:'edit',
+                isShow:false,
+                meta:{
+                    title:'编辑商品'
+                }
+            },
+            {
+                path:'/product/addProduct',
+                component:AddProduct,
+                name:'add',
+                isShow:true,
                 meta:{
                     title:'添加商品'
                 }
@@ -82,6 +100,7 @@ const routes=[
                 path:'/product/productList',
                 component:ProduceList,
                 name:'productList',
+                isShow:true,
                 meta:{
                     title:'商品列表'
                 }
@@ -92,6 +111,7 @@ const routes=[
         component:About,
         name:'about',
         exact:true,
+        isShow:true,
         meta:{
             title:'关于我们',
             icon:<TeamOutlined/>

@@ -7,22 +7,26 @@ import { Link,withRouter } from 'react-router-dom';
 const { SubMenu } = Menu;
 class Menus extends React.Component{
     renderMenuItem = (item) => {
-        return(
-            <Menu.Item key={item.path} icon={item.meta.icon}>
-                <Link to={item.path}>{item.meta.title}</Link>
-            </Menu.Item>
-        )
+        if(item.isShow){
+            return(
+                <Menu.Item key={item.path} icon={item.meta.icon}>
+                    <Link to={item.path}>{item.meta.title}</Link>
+                </Menu.Item>
+            )
+        }
     }
     renderSubMenuItem = (item) => {
-        return(
-            <SubMenu  key={item.path} icon={item.meta.icon} title={item.meta.title} path={item.path}  >
-                {
-                    item.children.map((item,indexs) => {
-                        return  item.children && item.children.length > 0 ? this.renderSubMenuItem(item) : this.renderMenuItem(item)
-                    })
-                }
-            </SubMenu>
-        )
+        if(item.isShow){
+            return(
+                <SubMenu  key={item.path} icon={item.meta.icon} title={item.meta.title} path={item.path}  >
+                    {
+                        item.children.map((item,indexs) => {
+                            return  item.children && item.children.length > 0 ? this.renderSubMenuItem(item) : this.renderMenuItem(item)
+                        })
+                    }
+                </SubMenu>
+            )
+        }
     }
     render(){
         const path = this.props.location.pathname
